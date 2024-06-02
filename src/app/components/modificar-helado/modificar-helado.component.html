@@ -1,0 +1,122 @@
+<!-- <p>modificar-helado works!</p> -->
+<div class="card mb-4 rounded-3 shadow-sm">
+    <div class="card-header py-3">
+        <h4 class="my-0 fw-normal">Modificar Helado</h4>
+      </div>
+      <div class="card-body">
+        <form
+        (ngSubmit)="modificar()"
+        [formGroup]="helado"
+        class="needs-validation"
+        novalidate
+      >
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label for="firstName" class="form-label">Nombre del sabor</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              placeholder=""
+              formControlName="nombre"
+              readonly="true"
+            />
+
+            @if (
+            helado.get('nombre')?.hasError('required') &&
+            helado.get('nombre')?.touched) {
+                <span class="text-danger">
+                  EL <strong>Nombre</strong> es requerido
+                </span>
+            }
+            
+            @if (
+            helado.get('nombre')?.hasError('minlength') &&
+            helado.get('nombre')?.touched) {
+                <span class="text-danger">
+                   EL <strong>Nombre</strong> Debe ser mas de 3 caracteres
+                </span>
+            }
+            
+          </div>
+    
+          <div class="col-12 col-md-6">
+            <label for="tipo" class="form-label">Tipo</label>
+            <select class="form-select" id="tipo" formControlName="tipo">
+              <option value="agua">Agua</option>
+              <option value="crema">Crema</option>
+            </select>
+
+            @if (
+            helado.get('tipo')?.hasError('required') &&
+            helado.get('tipo')?.touched) {
+                <span class="text-danger">
+                  El <strong>Tipo</strong> es requerido
+                </span>
+            }
+            
+          </div>
+    
+          <div class="col-12 col-md-6">
+            <label for="address" class="form-label">Precio</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              placeholder=""
+              formControlName="precio"
+            />
+
+            @if (
+            helado.get('edad')?.hasError('required') &&
+            helado.get('edad')?.touched) {
+                <span class="text-danger">
+                   La <strong>Precio</strong> es requerido
+                </span>  
+            }
+            
+          </div>
+    
+          <div class="col-12 col-md-6">
+            <label for="country" class="form-label">peso</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="peso"
+              [readonly]="true"
+            />
+
+            @if (
+            helado.get('peso')?.hasError('required') &&
+            helado.get('peso')?.touched) {
+                <span
+                
+                class="text-danger"
+              >
+                La <strong>Peso</strong> es requerido</span
+              >
+            }
+            
+          </div>
+        </div>
+        <hr class="my-4" />
+        <button
+        class="w-100 btn btn-lg"
+        style="background-color: #0d129d; color: white"
+        type="submit"
+        [disabled]="!helado.valid || loading01"
+      >
+
+         @if (loading01) {
+            <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"></span>
+         }
+        
+        {{ loading01 ? "" : "Actualizar" }}
+      </button>
+      </form>
+    </div>
+  </div>

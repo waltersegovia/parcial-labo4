@@ -1,0 +1,27 @@
+<!-- <p>tabla-repartidor works!</p> -->
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">edad</th>
+        <th scope="col">pais</th>
+        <th scope="col">DNI</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+
+        @for (item of repartidor; track item) {
+            <tr
+            (click)="repartidorSeleccionado(item)"
+            style="cursor: pointer;"
+          >
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.edad }}</td>
+            <td>{{ item.pais }}</td>
+            <td>{{ item.dni }}</td>
+          </tr>
+        }
+      
+    </tbody>
+  </table>

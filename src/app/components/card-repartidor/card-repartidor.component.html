@@ -1,0 +1,14 @@
+<!-- <p>card-repartidor works!</p> -->
+@if (actorDetalles) {
+    <div  class="card h-100 p-5 bg-light border rounded-3">
+        <div class="card-body">
+            <h3 class="card-title">NOMBRE: {{ actorDetalles.nombre | uppercase }}</h3>
+            <hr />
+            <p class="card-text">DNI: {{ actorDetalles.dni }}</p>
+            <p class="card-text">EDAD: {{ actorDetalles.edad}}</p>
+            <p class="card-text">PAIS: {{ actorDetalles.pais }}</p>
+            <p class="card-text">CAPACIDAD: {{ actorDetalles.capacidad }}</p>
+            <p class="card-text">UNIDAD PROPIA: {{ actorDetalles.unidadPropia }}</p>
+        </div>
+    </div>
+}

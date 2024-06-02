@@ -1,0 +1,105 @@
+<!-- <p>crear-helado works!</p> -->
+<div class="card mb-4 rounded-3 shadow-sm">
+    <div class="card-header py-3">
+        <h4 class="my-0 fw-normal">Crear Helado</h4>
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="addHelado()" [formGroup]="helado" class="needs-validation" novalidate>
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <label for="firstName" class="form-label">Nombre del sabor</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="" formControlName="nombre" />
+
+                    @if (helado.get('nombre')?.hasError('required') && helado.get('nombre')?.touched) {
+                    <span class="text-danger">
+                        EL <strong>Nombre</strong> es requerido</span>
+                    }
+
+                    @if ( helado.get('nombre')?.hasError('minlength') && helado.get('nombre')?.touched) {
+                    <span class="text-danger">
+                        EL <strong>Nombre</strong> Debe ser mas de 3 caracteres</span>
+                    }
+
+
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="tipo" class="form-label">Tipo</label>
+                    <select class="form-select" id="tipo" formControlName="tipo">
+                        <option value="agua">Agua</option>
+                        <option value="crema">Crema</option>
+                    </select>
+
+                    @if (
+                    helado.get('tipo')?.hasError('required') &&
+                    helado.get('tipo')?.touched) {
+                        <span class="text-danger">
+                                El <strong>Tipo</strong> es requerido
+                            </span>
+                    }
+                    
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="address" class="form-label">Precio</label>
+                    <input type="text" class="form-control" id="address" placeholder="" formControlName="precio" />
+                    
+                    @if (helado.get('precio')?.hasError('required') && helado.get('precio')?.touched) {
+                        <span class="text-danger"> 
+                            La <strong>Precio</strong> es requerido
+                        </span>
+                    }
+                    
+
+                    @if (helado.get('precio')?.hasError('soloNumeros') && helado.get('precio')?.touched) {
+                        <span class="text-danger">
+                                EL <strong>Precio</strong> solo numeros
+                        </span>
+                    }
+         
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="country" class="form-label">peso</label>
+                    <input type="text" class="form-control" placeholder="250 grs y 1000 grs" formControlName="peso" />
+
+                    @if (helado.get('peso')?.hasError('required') && helado.get('peso')?.touched) {
+                        <span  class="text-danger">
+                            La <strong>Peso</strong> es requerido
+                        </span>
+                    }
+               
+                    @if (helado.get('peso')?.hasError('min') && helado.get('peso')?.touched) {
+                        <span class="text-danger">
+                            El <strong>peso</strong> debe ser mayor o igual a 250 grs.
+                        </span>
+        
+                    }
+                   
+                    @if (helado.get('peso')?.hasError('max') && helado.get('peso')?.touched) {
+                        <span class="text-danger">
+                            El <strong>peso</strong> debe ser menor o igual a 1000 grs.
+                        </span>
+                    }
+                    
+                    @if (helado.get('peso')?.hasError('soloNumeros') && helado.get('peso')?.touched) {
+                        <span class="text-danger">
+                            EL <strong>Peso</strong> solo numeros
+                        </span>
+                    }
+                    
+                </div>
+            </div>
+            <hr class="my-4" />
+            <button class="w-100 btn btn-lg" style="background-color: #4b9d0d; color: white" type="submit"
+                [disabled]="!helado.valid || loading">
+                     
+                    @if (loading) {
+                        <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    }
+                
+                {{ loading ? "" : "Agregar" }}
+            </button>
+        </form>
+    </div>
+</div>

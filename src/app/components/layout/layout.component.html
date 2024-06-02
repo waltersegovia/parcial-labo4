@@ -1,0 +1,78 @@
+<!-- <p>layout works!</p> -->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" routerLink="/">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    @for (item of items; track item) {
+                        <li class="nav-item">
+                         
+                         @if (item.children) {
+                            <ng-container>
+                                <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                      aria-expanded="false">
+                                      {{ item.title }}
+                                  </a>
+                                  <ul class="dropdown-menu">
+
+                                    @for (child of item.children; track child) {
+                                        <li>
+                                            <a class="dropdown-item" [routerLink]="child.link">{{
+                                                child.title
+                                                }}
+                                            </a>
+                                        </li>
+                                    }
+                                      
+                                  </ul>
+                                </li>
+                               </ng-container>
+                         }
+                         
+                         @else {
+                            <li class="nav-item">
+                                <a [routerLink]="item.link" routerLinkActive="active" class="nav-link active"
+                                    aria-current="page">{{ item.title }}</a>
+                            </li>
+                         }
+                            
+                        </li>
+                    }
+                    
+
+                </ul>
+
+                <form class="d-flex">
+                    
+                    @if (!authUser.isAuthenticated()) {
+                        <button type="button" class="btn btn-success"
+                        style="margin-right: 5px" routerLink="/login">
+                        Acceder
+                    </button>
+                    }
+                    
+
+                    <button type="button" class="btn btn-danger" (click)="cerrarSesion()">
+                        Salir
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <ng-content select="router-outlet"></ng-content>
+    </section>
+
+    <footer>
+        <ng-content select="#footer"></ng-content>
+    </footer>
+</div>

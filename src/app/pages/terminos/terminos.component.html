@@ -1,0 +1,35 @@
+<!-- <p>terminos works!</p> -->
+<div class="d-flex justify-content-center mt-3">
+    <div class="card" style="width: 400px">
+        <div class="card-body">
+            <h2 class="text-center mb-4">Aceptar terminos</h2>
+            <form (ngSubmit)="submitForm()" [formGroup]="registrarUsuarios">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        formControlName="email" />
+
+                    @if(registrarUsuarios.get('email')?.hasError('required') && registrarUsuarios.get('email')?.touched){
+                        <span  class="text-danger">
+                            EL <strong>correo</strong> es requerido
+                        </span>
+                    }
+                   
+                    @if (registrarUsuarios.get('email')?.hasError('email') && registrarUsuarios.get('email')?.touched ) {
+                        <span class="text-danger">
+                            EL <strong>correo</strong> es invalido
+                        </span>
+                    }
+                    
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="termsCheckbox" formControlName="check">
+                    <label class="form-check-label" for="termsCheckbox">Acepto los Términos y Condiciones</label>
+                </div>
+                <button class="btn btn-primary w-100 btn-lg" type="submit" [disabled]="registrarUsuarios.invalid">
+                    ACEPTAR
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

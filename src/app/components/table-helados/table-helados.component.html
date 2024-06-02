@@ -1,0 +1,34 @@
+<!-- <p>table-helados works!</p> -->
+
+
+<section>
+    <h2 class="display-6 text-center mb-4">Listado de Helados</h2>
+    <table class="table text-center"> 
+        <thead >
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            @for (item of helados; track item) {
+                <tr
+                (click)="repartidorSeleccionado(item)"
+                style="cursor: pointer;"
+              >
+                <td>{{ item.nombre }}</td>
+                <td>{{ item.precio | precio }}</td>
+                <td>{{ item.peso + 'gs' }}</td>
+                <td>{{ item.tipo }}</td>
+              </tr>
+            }
+          
+        </tbody>
+      </table>
+  </section>
+
+  
+  

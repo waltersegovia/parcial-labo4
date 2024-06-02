@@ -1,0 +1,13 @@
+<!-- <p>detalles works!</p> -->
+<div class="container py-4">
+    <app-table-repartidor [repartidor]="repartidores"
+        (repartidorSeleccionadoClick)="onRepartidorSeleccionado($event)"></app-table-repartidor>
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <app-card-pais-repartidor [repartidorPais]="repartidorPais" />
+        </div>
+        <div class="col-md-6">
+            <app-card-repartidor [actorDetalles]="repartidorDetalles" />
+        </div>
+    </div>
+</div>

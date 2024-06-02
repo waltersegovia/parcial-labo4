@@ -1,0 +1,145 @@
+<!-- <p>register works!</p> -->
+<div class="d-flex justify-content-center mt-3">
+    <div *ngIf="!loading" class="card" style="width: 400px">
+      <div class="card-body">
+        <h2 class="text-center mb-4">Registrarse</h2>
+        <form (ngSubmit)="registrar()" [formGroup]="registrarUsuarios">
+          <div class="mb-3">
+            <label for="nombre" class="form-label"
+              >nombre</label
+            >
+            <input
+              type="nombre"
+              class="form-control"
+              id="nombre"
+              aria-describedby="emailHelp"
+              formControlName="nombre"
+            />
+            
+            @if (
+            registrarUsuarios.get('nombre')?.hasError('required') &&
+            registrarUsuarios.get('nombre')?.touched) {
+                <span
+              
+              class="text-danger"
+            >
+              EL <strong>nombre</strong> es requerido</span
+            >
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="rol" class="form-label">Rol</label>
+            <select class="form-select" id="rol" formControlName="rol">
+              <option value="admin">Admin</option>
+              <option value="empleado">empleado</option>
+            </select>
+
+            @if (
+            registrarUsuarios.get('rol')?.hasError('required') &&
+            registrarUsuarios.get('rol')?.touched) {
+                <span
+                
+                class="text-danger"
+              >
+                El <strong>rol</strong> es requerido
+              </span>
+            }
+            
+          </div>
+        
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >Correo Electronico</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              formControlName="email"
+            />
+
+            @if (
+            registrarUsuarios.get('email')?.hasError('required') &&
+            registrarUsuarios.get('email')?.touched) {
+                <span
+                
+                class="text-danger"
+              >
+                EL <strong>correo</strong> es requerido</span
+              >
+            }
+            
+            @if (
+            registrarUsuarios.get('email')?.hasError('email') &&
+            registrarUsuarios.get('email')?.touched) {
+                <span
+                
+                class="text-danger"
+              >
+                EL <strong>correo</strong> es invalido</span
+              >        
+            }
+           
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="password"
+            />
+
+            @if (
+            registrarUsuarios.get('password')?.hasError('required') &&
+            registrarUsuarios.get('password')?.touched) {
+                <span
+               
+                class="text-danger"
+              >
+                La <strong>contraseña</strong> es requerido</span
+              >
+            }
+           
+            @if (
+            registrarUsuarios.get('password')?.hasError('minlength') &&
+            registrarUsuarios.get('password')?.touched) {
+                <span
+              
+              class="text-danger"
+            >
+              La <strong>contraseña</strong> debe de tener 6 caracteres</span
+            >
+            }
+            
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Repetir Contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword2"
+              formControlName="repetirPassword"
+            />
+          </div>
+          <button
+            class="btn btn-primary w-100 btn-lg"
+            type="submit"
+            [disabled]="registrarUsuarios.invalid"
+          >
+            ACEPTAR
+          </button>
+        </form>
+        <div class="text-center mt-3">
+          <a routerLink="/login">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  

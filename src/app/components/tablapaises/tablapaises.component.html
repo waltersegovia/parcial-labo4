@@ -1,0 +1,32 @@
+<!-- <p>tablapaises works!</p> -->
+<section>
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary">{{(this.selecContinente !=='') ? 'Lista de Paises' : 'Seleccione el continente'}} </span>
+    </h4>
+    <select class="form-select mb-4" aria-label="Default select example" [(ngModel)]="selecContinente" name="continent" (change)="filterCountriesByRegion(selecContinente)">
+      <option [ngValue]="'europe'">Europa</option>
+      <option [ngValue]="'africa'">Africa</option>
+    </select>
+    <!-- agregar spinner opcional -->
+    @for (bandera of getDisplayedCountries(); track bandera) {
+        <ul class="list-group">
+            <li 
+            class="list-group-item d-flex justify-content-start lh-sm"
+            [ngClass]="{'selected': isSelected(bandera.name.common)}"
+            (click)="selectCountry(bandera.name.common)">
+              <div>
+                <img
+                  [src]="bandera.flags.png"
+                  [alt]="bandera.name.common"
+                  style="max-width: 60px"
+                />
+              </div>
+              <div>
+                <h6 class="my-0 p-2">{{ bandera.name.common }}</h6>
+              </div>
+            </li>
+          </ul>
+    }
+    
+  </section>
+  

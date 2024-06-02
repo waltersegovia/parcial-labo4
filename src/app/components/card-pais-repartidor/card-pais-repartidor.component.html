@@ -1,0 +1,29 @@
+<!-- <p>card-pais-repartidor works!</p> -->
+<section>
+    @if (repartidorPais) {
+    <div class="card h-100 p-5 text-white bg-dark rounded-3">
+
+        @if (repartidorPais.flag) {
+        <img [src]="repartidorPais.flag" class="card-img-top" alt="{{ repartidorPais.nombrePais }}" height="270" />
+        }
+
+        <div class="card-body">
+            <h2 class="card-title">{{ repartidorPais.nombrePais }}</h2>
+            <hr />
+            <p class="card-text">Usuario: {{ repartidorPais.usuario }}</p>
+            <p class="card-text">Region: {{ repartidorPais.region }}</p>
+            <p class="card-text">Idiomas:</p>
+            <ul class="list-unstyled">
+
+                @for (idioma of repartidorPais.languages; track idioma) {
+                <li>{{ idioma }}</li>
+                }
+
+
+            </ul>
+        </div>
+    </div>
+    }
+
+
+</section>

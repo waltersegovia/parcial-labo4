@@ -1,0 +1,152 @@
+<!-- <p>alta works!</p> -->
+<div class="container">
+    <main>
+        <div class="row g-5 mt-1">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <app-tablapaises [pais]="repartidor.value.pais" (seleccionar)="seleccionarPais($event)" />
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Alta Repartidor</h4>
+                <form (ngSubmit)="addUser()" [formGroup]="repartidor" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <label for="firstName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="firstName" placeholder=""
+                                formControlName="nombre" />
+
+                            @if (
+                            repartidor.get('nombre')?.hasError('required') &&
+                            repartidor.get('nombre')?.touched) {
+                            <span class="text-danger">
+                                EL <strong>Nombre</strong> es requerido
+                            </span>
+                            }
+
+                            @if (
+                            repartidor.get('nombre')?.hasError('minlength') &&
+                            repartidor.get('nombre')?.touched) {
+                                <span class="text-danger">
+                                    EL <strong>Nombre</strong> Debe ser mas de 3 caracteres
+                                </span>
+                            }
+                            
+                        </div>
+
+                        <div class="ccol-12 col-md-6">
+                            <label for="lastName" class="form-label">DNI</label>
+                            <input type="text" class="form-control" id="lastName" placeholder=""
+                                formControlName="dni" />
+                            
+                                @if (
+                                repartidor.get('dni')?.hasError('required') &&
+                                repartidor.get('dni')?.touched) {
+                                    <span class="text-danger">
+                                       EL <strong>DNI</strong> es requerido
+                                    </span>
+                                }
+                                
+                                @if (
+                                repartidor.get('dni')?.hasError('soloNumeros') &&
+                                repartidor.get('dni')?.touched) {
+                                    <span  class="text-danger">
+                                        EL <strong>DNI</strong> solo numeros
+                                    </span>
+                                }
+                            
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <label for="address" class="form-label">Edad</label>
+                            <input type="text" class="form-control" id="address" placeholder=""
+                                formControlName="edad" />
+
+                                @if (
+                                repartidor.get('edad')?.hasError('required') &&
+                                repartidor.get('edad')?.touched) {
+                                    <span  class="text-danger">
+                                        La <strong>Edad</strong> es requerido
+                                    </span>
+                                }
+                                
+                                @if (
+                                repartidor.get('edad')?.hasError('min') &&
+                                repartidor.get('edad')?.touched) {
+                                    <span class="text-danger">
+                                                La <strong>Edad</strong> debe ser mayor o igual a 18 años.
+                                            </span>
+                                }
+
+                                @if (
+                                repartidor.get('edad')?.hasError('max') &&
+                                repartidor.get('edad')?.touched) {
+                                    <span  class="text-danger">
+                                        La <strong>Edad</strong> debe ser menor o igual a 99 años.
+                                    </span>
+                                }
+                            
+                            
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <label for="country" class="form-label">País de origen</label>
+                            <input type="text" class="form-control" placeholder="" formControlName="pais"
+                                [readonly]="true" />
+                               
+                                @if (
+                                repartidor.get('pais')?.hasError('required') &&
+                                repartidor.get('pais')?.touched) {
+                                    <span  class="text-danger">
+                                        La <strong> Pais</strong> es requerido
+                                    </span>
+                                }
+                            
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <label for="state" class="form-label">Capacidad de transporte</label>
+                            <input type="text" class="form-control" placeholder="" formControlName="capacidad" />
+                                @if (
+                                repartidor.get('capacidad')?.hasError('required') &&
+                                repartidor.get('capacidad')?.touched) {
+                                    <span  class="text-danger">
+                                        La <strong> capacidad </strong> es requerido
+                                    </span>
+                                }
+                                
+                                @if (
+                                repartidor.get('capacidad')?.hasError('soloNumeros') &&
+                                repartidor.get('capacidad')?.touched) {
+                                    <span  class="text-danger">
+                                        EL <strong> capacidad </strong> permite solo numeros
+                                    </span>
+                                }
+                            
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="same-address"
+                                    formControlName="unidadPropia" />
+                                <label class="form-check-label" for="same-address">
+                                    Unidad Propia
+                                    <span class="text-muted">(verdadero o falso)</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4" />
+                    <button class="w-100 btn btn-lg" style="background-color: #0d689d; color: white" type="submit"
+                        [disabled]="!repartidor.valid || loading">
+
+                              @if (loading) {
+                                <span  class="spinner-border spinner-border-sm" role="status"
+                                  aria-hidden="true">
+                                </span>
+                              }
+                        
+                        {{ loading ? "" : "Agregar" }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>

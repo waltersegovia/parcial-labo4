@@ -1,0 +1,30 @@
+<!-- <p>salen-helados works!</p> -->
+<section>
+    <app-table-helados 
+      [helados]="helados"
+      [heladoSelecionado]="heladoSelecionado"
+      (heladoSeleccionado)="heladoSeleccionado($event)"
+    />
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <app-crear-helado
+          [loading]="loading"
+          (agregarHelado)="agregarHelado($event)"
+        />
+      </div>
+      <div class="col">
+        <app-modificar-helado
+        [loading01]="loading01"
+        [heladoSelecionado]="heladoSelecionado"
+        (modificarHelado)="modificarHelado($event)"
+        />
+      </div>
+      <div class="col">
+        <app-eliminar-helado
+        [loading02]="loading02"
+        [heladoSelecionado]="heladoSelecionado"
+        (eliminarHelado)="eliminarHelado($event)"
+        />
+      </div>
+    </div>
+  </section>
